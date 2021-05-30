@@ -25,3 +25,10 @@ Usage of ./journalctl-proxy:
 $ ./journalctl-proxy -p 8000
 
 ```
+
+### Config File
+If you want basic HTML authentication on the page, create a config.toml file with this format:
+```
+username = your_username
+password = your_password
+```

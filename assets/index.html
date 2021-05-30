@@ -9,7 +9,7 @@
 
     <style>
       body {
-        font-family: sans-serif;
+        font-family: 'Courier New', Courier, monospace;
         font-size: 13px;
       }
 
@@ -21,11 +21,32 @@
       header h1 {
         flex-grow: 1;
       }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      html[data-theme='dark'] {
+          background: #282a36;
+          color: #f8f8f2;
+      }
+
     </style>
 
   </head>
 
   <body>
+
+    <script>
+      
+      const html = document.getElementsByTagName('html')[0]
+
+      function toggleTheme() {
+        let currentTheme = html.dataset.theme
+        if (currentTheme === 'dark') html.dataset.theme = 'light'
+        else html.dataset.theme = 'dark'
+      }
+    </script>
 
     <header>
       <h1>journalctl proxy</h1>
@@ -33,20 +54,24 @@
         <select onchange="startListeningToService()">
           <option>Select service</option>
         </select>
+        <button onclick="toggleTheme()">Toggle Mode</button>
       </div>
     </header>
 
-    <table border="1" width="100%">
-      <thead>
-        <tr>
-          <th>PID</th>
-          <th>Unit</th>
-          <th>Timestamp</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div style="overflow-x:auto;">
+      <table border="1" width="100%">
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>Unit</th>
+            <th>Timestamp</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    
 
     <script>
 
