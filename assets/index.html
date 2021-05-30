@@ -52,7 +52,7 @@
       <h1>journalctl proxy</h1>
       <div>
         <select onchange="startListeningToService()">
-          <option>Select service</option>
+          <option>all</option>
         </select>
         <button onclick="toggleTheme()">Toggle Mode</button>
       </div>
@@ -119,9 +119,11 @@
           const realtimeTimestamp = document.createElement('td');
           const message = document.createElement('td');
 
+          const readableDt = new Date(parseInt(incomingMessage.__REALTIME_TIMESTAMP)/1000);
+
           pid.innerText = incomingMessage._PID;
           systemdUnit.innerText = incomingMessage._SYSTEMD_UNIT;
-          realtimeTimestamp.innerText = incomingMessage.__REALTIME_TIMESTAMP;
+          realtimeTimestamp.innerText = readableDt.toLocaleString();
           message.innerText = incomingMessage.MESSAGE;
 
           row.appendChild(pid);

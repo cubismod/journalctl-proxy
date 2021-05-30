@@ -105,7 +105,7 @@ func main() {
 		var cmd *exec.Cmd
 
 		if c.Params("id") == "all" {
-			cmd = exec.Command("journalctl", "-b", "-f", "10", "-o", "json")
+			cmd = exec.Command("journalctl", "-b", "-f", "-n", "10", "-o", "json")
 		} else {
 			cmd = exec.Command("journalctl", "-b", "-u", fmt.Sprintf("%s.service", c.Params("id")), "-f", "-n", "10", "-o", "json")
 		}
