@@ -81,7 +81,7 @@ func main() {
 	})
 
 	app.Get("/list-services", func(c *fiber.Ctx) error {
-		out, err := exec.Command("systemctl", "list-units", "--type=service", "--state=running", "--no-pager").Output()
+		out, err := exec.Command("systemctl", "list-units", "--state=running", "--no-pager").Output()
 
 		if err != nil {
 			fmt.Printf("%s", err)

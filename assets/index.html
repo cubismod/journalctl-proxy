@@ -10,7 +10,7 @@
     <style>
       body {
         font-family: 'Courier New', Courier, monospace;
-        font-size: 13px;
+        font-size: 10px;
       }
 
       header {
@@ -27,11 +27,20 @@
         border-collapse: collapse;
       }
 
+      td {
+        padding: 4px;
+      }
+
       html[data-theme='dark'] {
           background: #282a36;
           color: #f8f8f2;
       }
-
+      .unit { 
+        text-align: center;
+      }
+      .timestamp {
+        text-align: center;
+      }
     </style>
 
   </head>
@@ -53,6 +62,7 @@
       <h1>journalctl proxy</h1>
       <div>
         <select onchange="startListeningToService()">
+          <option>-select a service or all-</option>
           <option>all</option>
         </select>
         <button onclick="toggleTheme()">Toggle Mode</button>
@@ -123,8 +133,13 @@
           const readableDt = new Date(parseInt(incomingMessage.__REALTIME_TIMESTAMP)/1000);
 
           pid.innerText = incomingMessage._PID;
+
+          systemdUnit.className = 'unit'
           systemdUnit.innerText = incomingMessage._SYSTEMD_UNIT;
+
+          realtimeTimestamp.className = 'timestamp'
           realtimeTimestamp.innerText = readableDt.toLocaleString();
+
           message.innerText = incomingMessage.MESSAGE;
 
           const scroller = document.getElementById('scroller')
