@@ -59,7 +59,7 @@
       </div>
     </header>
 
-    <div style="overflow-y: scroll; height: 90vh; outline-style: auto;">
+    <div style="overflow-y: scroll; height: 90vh; outline-style: auto;" id="scroller">
       <table width="100%">
         <thead>
           <tr>
@@ -127,12 +127,15 @@
           realtimeTimestamp.innerText = readableDt.toLocaleString();
           message.innerText = incomingMessage.MESSAGE;
 
+          const scroller = document.getElementById('scroller')
+
           row.appendChild(pid);
           row.appendChild(systemdUnit);
           row.appendChild(realtimeTimestamp);
           row.appendChild(message);
 
           table.appendChild(row);
+          scroller.scrollTo({top: scroller.clientHeight, behavior: "smooth"})
         };
       }
 
